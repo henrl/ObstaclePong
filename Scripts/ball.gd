@@ -3,6 +3,7 @@ extends CharacterBody2D
 var speed: int = 500
 @onready var audioPlayer: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+
 func launch(direction: Vector2):
 	velocity = direction * speed
 

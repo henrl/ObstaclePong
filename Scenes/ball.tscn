@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bab55erupb1yc"]
+[gd_scene load_steps=7 format=3 uid="uid://bab55erupb1yc"]
 
 [ext_resource type="Texture2D" uid="uid://cgc2oopwdr28t" path="res://Sprites/Ball.png" id="1_d60mj"]
 [ext_resource type="Script" uid="uid://co7jcnpnb4xfb" path="res://Scripts/ball.gd" id="1_ij5cq"]
 [ext_resource type="AudioStream" uid="uid://b85ne5kpi3bic" path="res://Sounds/ball bounce sound.wav" id="3_376qj"]
+[ext_resource type="PackedScene" uid="uid://bpyxv81geeqlx" path="res://Scenes/ball_trail.tscn" id="4_yk4cr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ij5cq"]
 radius = 18.0
@@ -23,3 +24,5 @@ shape = SubResource("CircleShape2D_ij5cq")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_376qj")
+
+[node name="BallTrail" parent="." instance=ExtResource("4_yk4cr")]

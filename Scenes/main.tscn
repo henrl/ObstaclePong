@@ -57,19 +57,15 @@ shape = SubResource("WorldBoundaryShape2D_kry3j")
 [node name="Block" parent="." instance=ExtResource("6_21xkr")]
 z_index = 2
 position = Vector2(441, 211)
-scale = Vector2(1, 1)
 
 [node name="Block2" parent="." instance=ExtResource("6_21xkr")]
 position = Vector2(710, 466)
-scale = Vector2(1, 1)
 
 [node name="Block3" parent="." instance=ExtResource("6_21xkr")]
 position = Vector2(290, 507)
-scale = Vector2(1, 1)
 
 [node name="Block4" parent="." instance=ExtResource("6_21xkr")]
 position = Vector2(861, 144)
-scale = Vector2(1, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
