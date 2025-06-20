@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bu2508pobuagw"]
+[gd_scene load_steps=12 format=3 uid="uid://bu2508pobuagw"]
 
 [ext_resource type="PackedScene" uid="uid://td3hsqat2ysr" path="res://Scenes/paddle.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://6no8freuehml" path="res://Scripts/game_controller.gd" id="1_kry3j"]
 [ext_resource type="PackedScene" uid="uid://b2qifcovhp6iw" path="res://Scenes/goal.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cqi60qxf2w5u0" path="res://Scenes/countdown_animation.tscn" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://blymea4umisru" path="res://Scenes/score_ui.tscn" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://cvmh2ncy1omdx" path="res://Scenes/tutorial_screen.tscn" id="6_6bp64"]
 [ext_resource type="PackedScene" uid="uid://djoiw3jhspepx" path="res://Scenes/Obstacles/block.tscn" id="6_21xkr"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bo1nx"]
@@ -53,10 +54,28 @@ GoalID = 2
 rotation = 4.71239
 shape = SubResource("WorldBoundaryShape2D_kry3j")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
+[node name="Block" parent="." instance=ExtResource("6_21xkr")]
+z_index = 2
+position = Vector2(441, 211)
+scale = Vector2(1, 1)
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="Block2" parent="." instance=ExtResource("6_21xkr")]
+position = Vector2(710, 466)
+scale = Vector2(1, 1)
+
+[node name="Block3" parent="." instance=ExtResource("6_21xkr")]
+position = Vector2(290, 507)
+scale = Vector2(1, 1)
+
+[node name="Block4" parent="." instance=ExtResource("6_21xkr")]
+position = Vector2(861, 144)
+scale = Vector2(1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -65,11 +84,17 @@ grow_vertical = 2
 color = Color(0.992157, 0.941176, 0.839216, 1)
 
 [node name="Countdown Animation" parent="CanvasLayer" instance=ExtResource("4_jjvhh")]
+unique_name_in_owner = true
+visible = false
 
 [node name="Score UI (HBox)" parent="CanvasLayer" instance=ExtResource("5_kry3j")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_right = 135.0
+offset_bottom = 55.0
+grow_horizontal = 2
 
-[node name="Block" parent="." instance=ExtResource("6_21xkr")]
-position = Vector2(441, 211)
-
-[node name="Block2" parent="." instance=ExtResource("6_21xkr")]
-position = Vector2(710, 466)
+[node name="TutorialScreen" parent="CanvasLayer" instance=ExtResource("6_6bp64")]
+unique_name_in_owner = true

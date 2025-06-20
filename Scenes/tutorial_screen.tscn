@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvmh2ncy1omdx"]
+
+[ext_resource type="Script" uid="uid://cep3mlw4bg13j" path="res://Scripts/tutorial_screen.gd" id="1_y8jer"]
+
+[node name="TutorialScreen" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
+script = ExtResource("1_y8jer")
+
+[node name="TutorialScreenPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TutorialScreenPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialScreenPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="Label" type="Label" parent="TutorialScreenPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Player 1 Controls:
+Press W to move the paddle up
+Press S to move the paddle down
+
+Player 2 Controls:
+Press Up Arrow to move the paddle up
+Press Down Arrow to move the paddle down"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="TutorialScreenPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Let's play!"
+
+[connection signal="pressed" from="TutorialScreenPanel/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

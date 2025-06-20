@@ -3,11 +3,23 @@ extends Node2D
 var countdownAnim: AnimationPlayer
 var ball: PackedScene = load("res://Scenes/ball.tscn")
 signal resetPaddle
+@onready var canvaslayer: CanvasLayer = $CanvasLayer
+@onready var background: ColorRect = %Background
+@onready var countdown_animation: Label = %"Countdown Animation"
+@onready var tutorial_screen: MarginContainer = %TutorialScreen
 
 func _ready():
-	StartGame()
+	canvaslayer.layer = 1
+	background.visible = false
+	countdown_animation.visible = false
+	tutorial_screen.visible = true
+	Global.start_game.connect(StartGame)
 
 func StartGame():
+	canvaslayer.layer = -1
+	background.visible = true
+	countdown_animation.visible = true
+	tutorial_screen.visible = false
 	countdownAnim = get_tree().get_first_node_in_group("countdown animation")
 	var paddles = get_tree().get_nodes_in_group("paddle")
 	
