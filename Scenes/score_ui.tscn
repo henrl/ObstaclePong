@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://blymea4umisru"]
+
+[ext_resource type="Script" uid="uid://cmlb2ifmm83c8" path="res://Scripts/score_updater.gd" id="1_slsms"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oaniv"]
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Score UI (HBox)" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="P1 Score Label" type="Label" parent="."]
+layout_mode = 2
+text = "Red : 0"
+label_settings = SubResource("LabelSettings_oaniv")
+script = ExtResource("1_slsms")
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 2
+
+[node name="P2 Score Label" type="Label" parent="."]
+layout_mode = 2
+text = "Blue: 0"
+label_settings = SubResource("LabelSettings_oaniv")
+script = ExtResource("1_slsms")
+playerID = 2

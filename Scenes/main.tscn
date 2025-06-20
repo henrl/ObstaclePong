@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://bu2508pobuagw"]
+
+[ext_resource type="PackedScene" uid="uid://td3hsqat2ysr" path="res://Scenes/paddle.tscn" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://6no8freuehml" path="res://Scripts/game_controller.gd" id="1_kry3j"]
+[ext_resource type="PackedScene" uid="uid://b2qifcovhp6iw" path="res://Scenes/goal.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cqi60qxf2w5u0" path="res://Scenes/countdown_animation.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://blymea4umisru" path="res://Scenes/score_ui.tscn" id="5_kry3j"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bo1nx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8gbba"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjvhh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kry3j"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_kry3j")
+
+[node name="Paddle" parent="." instance=ExtResource("1_jjgbg")]
+position = Vector2(55, 352)
+
+[node name="Paddle2" parent="." instance=ExtResource("1_jjgbg")]
+position = Vector2(1096, 357)
+paddleID = 2
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_bo1nx")
+
+[node name="BottomWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+position = Vector2(0, 648)
+shape = SubResource("WorldBoundaryShape2D_8gbba")
+
+[node name="Goal1" parent="." instance=ExtResource("3_8gbba")]
+position = Vector2(0, 344)
+GoalID = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal1"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_jjvhh")
+
+[node name="Goal2" parent="." instance=ExtResource("3_8gbba")]
+position = Vector2(1151, 344)
+GoalID = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal2"]
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_kry3j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.992157, 0.941176, 0.839216, 1)
+
+[node name="Countdown Animation" parent="CanvasLayer" instance=ExtResource("4_jjvhh")]
+
+[node name="Score UI (HBox)" parent="CanvasLayer" instance=ExtResource("5_kry3j")]

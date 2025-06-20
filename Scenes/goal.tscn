@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2qifcovhp6iw"]
+
+[ext_resource type="Script" uid="uid://dhriajaqb4ugx" path="res://Scripts/goal.gd" id="1_paeek"]
+
+[node name="Goal" type="Area2D"]
+script = ExtResource("1_paeek")
