@@ -1,7 +1,11 @@
 extends Node2D
+class_name GameManager
 
+@export var has_cpu: bool = false
 var countdownAnim: AnimationPlayer
-var ball: PackedScene = load("res://Scenes/ball.tscn")
+var ball_scene: PackedScene = load("res://Scenes/ball.tscn")
+var ball_in_play: Node
+var cpu_paddle: PaddleCpu
 signal resetPaddle
 
 @onready var countdown_animation: Label = %"Countdown Animation"
@@ -10,6 +14,8 @@ signal resetPaddle
 
 func _ready():
 	Global.scored_goal.connect(playScoredSound)
+	if has_cpu:
+		cpu_paddle = get_tree().get_first_node_in_group("cpu")
 	StartGame()
 
 func StartGame():
@@ -40,8 +46,12 @@ func endGame():
 	get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 
 func spawnBall():
-	var newBall = ball.instantiate()
-	newBall.global_position = get_viewport().get_visible_rect().size/2
+	ball_in_play = ball_scene.instantiate()
+	ball_in_play.global_position = get_viewport().get_visible_rect().size/2
 	var direction = Vector2.from_angle(randf_range(0,359))
-	newBall.launch(direction)
-	get_tree().root.get_child(1).add_child(newBall)
+	ball_in_play.launch(direction)
+	get_tree().root.get_child(1).add_child(ball_in_play)
+
+func _physics_process(delta: float) -> void:
+	if has_cpu and ball_in_play != null:
+		cpu_paddle.destination = ball_in_play.global_position

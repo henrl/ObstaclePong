@@ -14,4 +14,4 @@ func _on_player_pressed() -> void:
 
 
 func _on_cpu_player_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/main_cpu.tscn")

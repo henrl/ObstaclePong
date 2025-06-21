@@ -24,6 +24,7 @@ Global="*res://Scripts/global.gd"
 paddle=""
 ball=""
 "countdown animation"=""
+cpu=""
 
 [input]
 

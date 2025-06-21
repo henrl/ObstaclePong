@@ -78,9 +78,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.992157, 0.941176, 0.839216, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Countdown Animation" parent="CanvasLayer" instance=ExtResource("4_jjvhh")]
 unique_name_in_owner = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Score UI (HBox)" parent="CanvasLayer" instance=ExtResource("5_kry3j")]
 anchors_preset = 5
@@ -90,6 +92,7 @@ offset_left = -135.0
 offset_right = 135.0
 offset_bottom = 55.0
 grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_344ge")

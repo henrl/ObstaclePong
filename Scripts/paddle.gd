@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Paddle
 
 @export var paddleID: int = 1
 var speed: int = 10

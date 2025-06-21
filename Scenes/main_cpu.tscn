@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://bdro3mfbhdad4"]
+
+[ext_resource type="Script" uid="uid://6no8freuehml" path="res://Scripts/game_controller.gd" id="1_54bje"]
+[ext_resource type="PackedScene" uid="uid://td3hsqat2ysr" path="res://Scenes/paddle.tscn" id="2_iyw3k"]
+[ext_resource type="PackedScene" uid="uid://b2qifcovhp6iw" path="res://Scenes/goal.tscn" id="3_4ut2a"]
+[ext_resource type="PackedScene" uid="uid://j7r1m3s1ccll" path="res://Scenes/paddle_cpu.tscn" id="3_iyw3k"]
+[ext_resource type="PackedScene" uid="uid://djoiw3jhspepx" path="res://Scenes/Obstacles/block.tscn" id="4_n1jh1"]
+[ext_resource type="PackedScene" uid="uid://cqi60qxf2w5u0" path="res://Scenes/countdown_animation.tscn" id="5_og7uu"]
+[ext_resource type="PackedScene" uid="uid://blymea4umisru" path="res://Scenes/score_ui.tscn" id="6_1kcae"]
+[ext_resource type="AudioStream" uid="uid://dtfg1713drrn2" path="res://Sounds/Score sound.wav" id="7_h25uo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ltg1q"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ya81a"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u3day"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_42ksk"]
+
+[node name="Main_CPU" type="Node2D"]
+script = ExtResource("1_54bje")
+has_cpu = true
+
+[node name="Paddle" parent="." instance=ExtResource("2_iyw3k")]
+position = Vector2(55, 352)
+
+[node name="Paddle_CPU" parent="." groups=["cpu"] instance=ExtResource("3_iyw3k")]
+position = Vector2(1096, 357)
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_ltg1q")
+
+[node name="BottomWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+position = Vector2(0, 648)
+shape = SubResource("WorldBoundaryShape2D_ya81a")
+
+[node name="Goal1" parent="." instance=ExtResource("3_4ut2a")]
+position = Vector2(0, 344)
+GoalID = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal1"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_u3day")
+
+[node name="Goal2" parent="." instance=ExtResource("3_4ut2a")]
+position = Vector2(1151, 344)
+GoalID = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal2"]
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_42ksk")
+
+[node name="Block" parent="." instance=ExtResource("4_n1jh1")]
+z_index = 2
+position = Vector2(441, 211)
+
+[node name="Block2" parent="." instance=ExtResource("4_n1jh1")]
+position = Vector2(710, 466)
+
+[node name="Block3" parent="." instance=ExtResource("4_n1jh1")]
+position = Vector2(290, 507)
+
+[node name="Block4" parent="." instance=ExtResource("4_n1jh1")]
+position = Vector2(861, 144)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.992157, 0.941176, 0.839216, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Countdown Animation" parent="CanvasLayer" instance=ExtResource("5_og7uu")]
+unique_name_in_owner = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Score UI (HBox)" parent="CanvasLayer" instance=ExtResource("6_1kcae")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_right = 135.0
+offset_bottom = 55.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_h25uo")
