@@ -35,9 +35,11 @@ func playScoredSound():
 	audio_stream_player_2d.play()
 
 func startNextRound():
+	ball_in_play = null
 	if (Global.P1_Score == 5 or Global.P2_Score == 5):
 		call_deferred("endGame")
 		return
+	resetPaddle.emit()
 	countdownAnim.play("countdown")
 	await countdownAnim.animation_finished
 	spawnBall()
