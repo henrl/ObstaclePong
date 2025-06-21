@@ -7,6 +7,7 @@ func _ready():
 
 func scored(body):
 	if (body.is_in_group("ball")):
+		Global.scored_goal.emit()
 		if (GoalID == 1):
 			Global.P2_Score += 1
 		if (GoalID == 2):

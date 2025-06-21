@@ -3,34 +3,30 @@ extends Node2D
 var countdownAnim: AnimationPlayer
 var ball: PackedScene = load("res://Scenes/ball.tscn")
 signal resetPaddle
-@onready var canvaslayer: CanvasLayer = $CanvasLayer
-@onready var background: ColorRect = %Background
+
 @onready var countdown_animation: Label = %"Countdown Animation"
-@onready var tutorial_screen: MarginContainer = %TutorialScreen
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 
 func _ready():
-	canvaslayer.layer = 1
-	background.visible = false
-	countdown_animation.visible = false
-	tutorial_screen.visible = true
-	Global.start_game.connect(StartGame)
+	Global.scored_goal.connect(playScoredSound)
+	StartGame()
 
 func StartGame():
-	canvaslayer.layer = -1
-	background.visible = true
-	countdown_animation.visible = true
-	tutorial_screen.visible = false
 	countdownAnim = get_tree().get_first_node_in_group("countdown animation")
 	var paddles = get_tree().get_nodes_in_group("paddle")
 	
 	for paddle in paddles:
 		connect("resetPaddle", paddle.reset)
-	
 	Global.P1_Score = 0
 	Global.P2_Score = 0
+	
 	resetPaddle.emit()
 	
 	startNextRound()
+
+func playScoredSound():
+	audio_stream_player_2d.play()
 
 func startNextRound():
 	if (Global.P1_Score == 5 or Global.P2_Score == 5):

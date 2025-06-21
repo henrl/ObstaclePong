@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed: int = 500
+var speed: int = 800
 @onready var audioPlayer: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
