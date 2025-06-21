@@ -1,7 +1,6 @@
 extends Node2D
 class_name GameManager
 
-@export var has_cpu: bool = false
 var countdownAnim: AnimationPlayer
 var ball_scene: PackedScene = load("res://Scenes/ball.tscn")
 var ball_in_play: Node
@@ -14,9 +13,15 @@ signal resetPaddle
 
 func _ready():
 	Global.scored_goal.connect(playScoredSound)
-	if has_cpu:
+	Global.freezePlayer.connect(freezePaddle)
+	if Global.has_cpu:
 		cpu_paddle = get_tree().get_first_node_in_group("cpu")
 	StartGame()
+
+func freezePaddle(paddleID: int):
+	var paddles = get_tree().get_nodes_in_group("paddle")
+	var defendingPaddle = paddles.filter(func(paddle): return paddle.paddleID == paddleID)[0]
+	defendingPaddle.is_frozen = true
 
 func StartGame():
 	countdownAnim = get_tree().get_first_node_in_group("countdown animation")
@@ -26,6 +31,7 @@ func StartGame():
 		connect("resetPaddle", paddle.reset)
 	Global.P1_Score = 0
 	Global.P2_Score = 0
+	Global.attacking_player_id = 0
 	
 	resetPaddle.emit()
 	
@@ -36,6 +42,10 @@ func playScoredSound():
 
 func startNextRound():
 	ball_in_play = null
+	var paddles = get_tree().get_nodes_in_group("paddle")
+	
+	for paddle in paddles:
+		paddle.is_frozen = false
 	if (Global.P1_Score == 5 or Global.P2_Score == 5):
 		call_deferred("endGame")
 		return
@@ -55,5 +65,5 @@ func spawnBall():
 	get_tree().root.get_child(1).add_child(ball_in_play)
 
 func _physics_process(delta: float) -> void:
-	if has_cpu and ball_in_play != null:
+	if Global.has_cpu and ball_in_play != null:
 		cpu_paddle.destination = ball_in_play.global_position

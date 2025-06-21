@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://crj8ujdkfilk5"]
+
+[ext_resource type="Texture2D" uid="uid://cy5hl2k55ua4i" path="res://Sprites/ice.png" id="1_80qup"]
+[ext_resource type="Script" uid="uid://ickvmw0d1la1" path="res://Scripts/freeze_powerup.gd" id="1_v1vht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80qup"]
+size = Vector2(30, 29)
+
+[node name="FreezePowerup" type="Area2D"]
+script = ExtResource("1_v1vht")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_80qup")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_80qup")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdro3mfbhdad4"]
+[gd_scene load_steps=14 format=3 uid="uid://bdro3mfbhdad4"]
 
 [ext_resource type="Script" uid="uid://6no8freuehml" path="res://Scripts/game_controller.gd" id="1_54bje"]
 [ext_resource type="PackedScene" uid="uid://td3hsqat2ysr" path="res://Scenes/paddle.tscn" id="2_iyw3k"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cqi60qxf2w5u0" path="res://Scenes/countdown_animation.tscn" id="5_og7uu"]
 [ext_resource type="PackedScene" uid="uid://blymea4umisru" path="res://Scenes/score_ui.tscn" id="6_1kcae"]
 [ext_resource type="AudioStream" uid="uid://dtfg1713drrn2" path="res://Sounds/Score sound.wav" id="7_h25uo"]
+[ext_resource type="PackedScene" uid="uid://cpfw378j0opvb" path="res://Scenes/powerup_spawner.tscn" id="9_4ut2a"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ltg1q"]
 
@@ -19,7 +20,6 @@
 
 [node name="Main_CPU" type="Node2D"]
 script = ExtResource("1_54bje")
-has_cpu = true
 
 [node name="Paddle" parent="." instance=ExtResource("2_iyw3k")]
 position = Vector2(55, 352)
@@ -97,3 +97,5 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_h25uo")
+
+[node name="PowerupSpawner" parent="." instance=ExtResource("9_4ut2a")]

@@ -30,10 +30,11 @@ offset_right = 58.0
 offset_bottom = 81.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 50
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Yet Another Pong Clone"
+text = "Obstacle Pong"
 label_settings = SubResource("LabelSettings_erv1k")
 
 [node name="1Player" type="Button" parent="VBoxContainer"]

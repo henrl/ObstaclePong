@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpfw378j0opvb"]
+
+[ext_resource type="Script" uid="uid://d2n6eutg65jlf" path="res://Scripts/powerup_spawner.gd" id="1_cuwxn"]
+
+[node name="PowerupSpawner" type="Node" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_cuwxn")
+timer = NodePath("Timer")
+
+[node name="SpawnPositions" type="Node" parent="."]
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(401, 172)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(328, 465)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(816, 179)
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(744, 510)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

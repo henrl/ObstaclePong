@@ -13,4 +13,5 @@ func scored(body):
 		if (GoalID == 2):
 			Global.P1_Score += 1
 		body.queue_free()
+		Global.attacking_player_id = 0
 		owner.startNextRound()

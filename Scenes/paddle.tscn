@@ -1,17 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://td3hsqat2ysr"]
+[gd_scene load_steps=6 format=3 uid="uid://td3hsqat2ysr"]
 
 [ext_resource type="Script" uid="uid://cjbosubfryaie" path="res://Scripts/paddle.gd" id="1_krcey"]
 [ext_resource type="Texture2D" uid="uid://sh3cdl67o2ls" path="res://Sprites/Paddle 1.png" id="1_nxw3c"]
+[ext_resource type="Texture2D" uid="uid://0pylsug2o7rk" path="res://Sprites/ice2.png" id="3_fe6ia"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_krcey"]
 radius = 16.0
 height = 160.0
 
-[node name="Paddle" type="CharacterBody2D" groups=["paddle"]]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fe6ia"]
+radius = 18.0
+height = 164.0
+
+[node name="Paddle" type="CharacterBody2D" node_paths=PackedStringArray("ice_block") groups=["paddle"]]
 script = ExtResource("1_krcey")
+ice_block = NodePath("IceBlock")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nxw3c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_krcey")
+
+[node name="CollisionDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetector"]
+shape = SubResource("CapsuleShape2D_fe6ia")
+debug_color = Color(0.8189, 0.370008, 0.435641, 0.42)
+
+[node name="IceBlock" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(3, 3)
+texture = ExtResource("3_fe6ia")
+
+[connection signal="body_entered" from="CollisionDetector" to="." method="_on_collision_detector_body_entered"]

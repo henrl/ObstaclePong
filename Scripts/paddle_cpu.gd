@@ -4,10 +4,13 @@ class_name PaddleCpu
 var destination: Vector2
 
 func _process(_delta: float) -> void:
-	pass
+	if is_frozen:
+		ice_block.show()
+		return
+	ice_block.hide()
 
 func _physics_process(delta: float) -> void:
-	if (destination == Vector2.ZERO):
+	if (destination == Vector2.ZERO || is_frozen):
 		return
 	var error_margin = randf_range(-100, 100)
 	if (destination.y > global_position.y + error_margin):
