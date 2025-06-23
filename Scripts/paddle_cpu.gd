@@ -14,9 +14,9 @@ func _physics_process(delta: float) -> void:
 		return
 	var error_margin = randf_range(-100, 100)
 	if (destination.y > global_position.y + error_margin):
-		global_position.y += speed
+		global_position.y = lerp(global_position.y, global_position.y + speed, 5 *speed * delta)
 	elif (destination.y < global_position.y + error_margin):
-		global_position.y -= speed
+		global_position.y = lerp(global_position.y, global_position.y - speed, 5 * speed * delta)
 	global_position.y = clamp(global_position.y, 80, get_viewport_rect().size.y -80)
 
 func reset():
